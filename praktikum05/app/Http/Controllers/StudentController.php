@@ -93,14 +93,25 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id) {
-        // Menghapus data hewan berdasarkan id
-        if (isset($this->animals[$id])) {
-            unset($this->animals[$id]);
+    public function destroy(string $id)
+    {
+        // Cari student berdasarkan ID
+        $student = Student::find($id);
+    
+        // Jika data student tidak ditemukan
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student not found'
+            ], 404);
         }
-
-        // Menampilkan pesan dan data animals setelah penghapusan
-        echo "Menghapus data hewan id $id<br>";
-        $this->index(); // Panggil method index untuk menampilkan semua data animals
+    
+        // Hapus data student
+        $student->delete();
+    
+        // Response setelah data berhasil dihapus
+        return response()->json([
+            'message' => 'Student deleted successfully'
+        ], 200);
     }
+    
 }
