@@ -26,7 +26,7 @@ Route::delete('/animals/{id}', [AnimalController::class, 'destroy']);
 
 // pekan 5 dan 6
 Route::get('/students', [StudentController::class, 'index']);
-Route::post('/students/store', [StudentController::class, 'store']);
+Route::post('/students', [StudentController::class, 'store']);
 Route::put('/students/{id}', [StudentController::class, 'update']);
 Route::delete('/students/{id}', [StudentController::class, 'destroy']);
 Route::get('/students/{id}', [StudentController::class, 'show']);
